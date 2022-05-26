@@ -1,10 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const { start } = require('repl');
 
+async function directory() {
+  await fs.mkdir(path.join(__dirname, 'project-dist'),{recursive:true}, () => {});
+  await fs.mkdir(path.join(__dirname, 'project-dist', 'assets'),{recursive:true}, () => {});
+}
 
-fs.mkdir(path.join(__dirname, 'project-dist'),{recursive:true}, () => {});
-fs.mkdir(path.join(__dirname, 'project-dist', 'assets'),{recursive:true}, () => {});
-setTimeout(() => {
+function starst(){ 
   fs.readdir(path.join(__dirname, 'styles'), (err, data) => {
     if(err) throw err;
     data.forEach(elem => {
@@ -95,4 +98,6 @@ setTimeout(() => {
       });
     });
   });
-}, 3000);
+}
+directory();
+starst();
